@@ -6,7 +6,6 @@ import time
 
 overpass_url = "http://overpass-api.de/api/interpreter"
 
-# returns all national forest service ways/relations in WA
 area_query = """
 [out:json]
 area["ISO3166-2"][admin_level=4];
