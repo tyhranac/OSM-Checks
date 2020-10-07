@@ -58,4 +58,28 @@ for k, v in area_ids.items():
         time.sleep(60)
         feature_req = requests.get(overpass_url, params={"data":featured_query})
 
-    
+    feature_data = feature_req.json()
+
+    num_features = 0
+
+    for element in feature_data["elements"]:
+        if element["type"] == "node":
+            num_features += 1
+
+    features.setdefault(k, num_features)
+
+date = str(datetime.date.today())
+date = date.replace("-","")
+file_name = "FeaturesInArea_{}.csv".format(date)
+
+with open(file_name, mode="w") as out_file:
+    header = ["Park", "Trees"]
+    writer = csv.writer(out_file, delimiter=",")
+    writer.writerow(header)
+
+    for k, v in features.items():
+        row = [k, v]
+        writer.writerow(row)
+
+print("Script complete - check .csv file saved in the same folder as this\
+        script for the data")
