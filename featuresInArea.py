@@ -7,10 +7,10 @@ import time
 overpass_url = "http://overpass-api.de/api/interpreter"
 
 area_query = """
-[out:json]
-area["ISO3166-2"][admin_level=4];
+[out:json];
+area["ISO3166-2"="US-WA"][admin_level=4];
 wr[boundary=national_park](area);
-out meta;
+out body;
 >;
 out skel qt;
 """
@@ -42,9 +42,9 @@ features = {}
 
 for k, v in area_ids.items():
     feature_query = """
-    [out:json]
+    [out:json];
     node[natural=tree](area{});
-    out meta;
+    out body;
     >;
     out skel qt;
     """.format(v)
