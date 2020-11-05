@@ -62,9 +62,9 @@ def class_piechart(class_dict):
 def main():
 	class_proportions = {}
 
-	class_proportions["primary"] = class_distance("kent_primary_bbox.xml")
-	class_proportions["secondary"] = class_distance("kent_secondary_bbox.xml")
-	class_proportions["tertiary"] = class_distance("kent_tertiary_bbox.xml")
+	class_proportions["primary"] = class_distance(<xml file path>)
+	class_proportions["secondary"] = class_distance(<xml file path>)
+	class_proportions["tertiary"] = class_distance(<xml file path>)
 
 	class_piechart(class_proportions)
 
