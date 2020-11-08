@@ -7,7 +7,7 @@ Radius and equation from GIS Fundamentals 5th Ed. by Paul Bolstad
 """
 
 def gc_distance(point1, point2):
-	"""returns distance between point1 (lat, lon) and point2 (lat, lon) in km using great circle equation"""
+	"""returns distance between point1 [lon, lat] and point2 [lon, lat] in km using great circle equation"""
 	lon1, lat1 = point1[0], point1[1]
 	lon2, lat2 = point2[0], point2[1]
 	lat1, lat2, lon1, lon2 = map(math.radians, [lat1, lat2, lon1, lon2])
