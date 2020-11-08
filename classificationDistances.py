@@ -1,5 +1,4 @@
-from xml.dom.minidom import parse
-import xml.dom.minidom
+import json
 import math
 import matplotlib.pyplot as plt
 
