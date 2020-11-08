@@ -29,10 +29,10 @@ def class_distance(json_file_path):
 	ways = json.load(open(json_file_path))
 
 	total_distance = 0
-	coords = []
 
 	for feature in ways["features"]:
 		if feature["geometry"]["type"] == "LineString":
+			coords = []
 			way_distance = 0
 			for coord in feature["geometry"]["coordinates"]:
 				coords.insert(0, coord)
@@ -44,7 +44,6 @@ def class_distance(json_file_path):
 					way_distance += gc_distance(p1, p2)
 					coords.pop()
 					
-			coords = []
 			total_distance += way_distance
 
 	return total_distance
