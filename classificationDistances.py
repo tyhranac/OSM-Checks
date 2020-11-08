@@ -43,7 +43,8 @@ def class_distance(json_file_path):
 					p2 = coords[1]
 					way_distance += gc_distance(p1, p2)
 					coords.pop()
-
+					
+			coords = []
 			total_distance += way_distance
 
 	return total_distance
