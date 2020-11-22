@@ -8,7 +8,7 @@ area["name"="Los Angeles County"][admin_level=6];
 nwr[amenity=university](area);
 
 // Recurse down to return all nodes/ways that are part of 
-// ways/relations in set ._
+// ways/relations in input set
 (._;>;);
 
 // Return all info besides version/user (use meta for this)
