@@ -1,0 +1,13 @@
+// Settings declaration
+[out:json][timeout:5000];
+
+// Area filter
+area["name"="Los Angeles County"][admin_level=6];
+
+// Features where key=value
+nwr[amenity=university](area);
+
+(._;>;);
+
+// Quadtile index
+out body qt;
