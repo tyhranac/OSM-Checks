@@ -4,10 +4,13 @@
 // Area filter
 area["name"="Los Angeles County"][admin_level=6];
 
-// Features where key=value
+// Features
 nwr[amenity=university](area);
 
+// Recurse down to return all nodes/ways that are part of 
+// ways/relations in set ._
 (._;>;);
 
-// Quadtile index
+// Return all info besides version/user (use meta)
+// Quadtile indexing
 out body qt;
