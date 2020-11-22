@@ -1,0 +1,16 @@
+// Settings declaration
+[out:json][timeout:5000];
+
+// Area filter
+area["ISO3166-1"="EG"][admin_level=2];
+
+// Major roads/highways in area
+way[highway~"motorway|trunk|primary"](area);
+
+// Recurse down to return all nodes/ways that are part of 
+// ways/relations in set input set
+(._;>;);
+
+// Return all info besides version/user (use meta for this)
+// Quadtile indexing
+out body qt;
