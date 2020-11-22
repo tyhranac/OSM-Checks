@@ -11,6 +11,6 @@ nwr[amenity=university](area);
 // ways/relations in set ._
 (._;>;);
 
-// Return all info besides version/user (use meta)
+// Return all info besides version/user (use meta for this)
 // Quadtile indexing
 out body qt;
