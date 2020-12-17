@@ -1,11 +1,13 @@
 import math
 import matplotlib.pyplot as plt
 import requests
+import sys
 import time
 
+
 def overpass_query(iso_sub_code, classification, admin_level="4"):
-	"""returns json response of ways where highway=classification in iso_sub_code area"""
-	url = "http://z.overpass-api.de/api/interpreter"
+	"""returns json response of ways where highway=classification in iso_code area"""
+	url = "http://overpass-api.de/api/interpreter"
 	query = """
 	[out:json][timeout:5000];
 	area["ISO3166-2"="{}"][admin_level={}];
@@ -25,13 +27,17 @@ def overpass_query(iso_sub_code, classification, admin_level="4"):
 
 	return response.json()
 
+
 """
 Radius and equation from GIS Fundamentals 5th Ed. by Paul Bolstad
 """
 
+
 def gc_distance(point1, point2):
 	"""returns distance between point1 and point2 using great circle equation"""
-	lat1, lat2, lon1, lon2 = map(math.radians, [point1[1], point2[1], point1[0], point2[0]])
+	lon1, lat1 = point1[0], point1[1]
+	lon2, lat2 = point2[0], point2[1]
+	lat1, lat2, lon1, lon2 = map(math.radians, [lat1, lat2, lon1, lon2])
 	radius = 6378 # WGS84 equatorial radius in km
 
 	trig = math.sin(lat1) * math.sin(lat2) + math.cos(lat1)\
@@ -87,15 +93,16 @@ def class_piechart(class_dict, fignum=1):
 
 def main():
 	d_proportions = {}
-
-	motorway = class_distance(overpass_query("<ISO3166-2 code>", "motorway"))
-	trunk = class_distance(overpass_query("<ISO3166-2 code>", "trunk"))
-	primary = class_distance(overpass_query("<ISO3166-2 code>", "primary"))
-	secondary = class_distance(overpass_query("<ISO3166-2 code>", "secondary"))
-	tertiary = class_distance(overpass_query("<ISO3166-2 code>", "tertiary"))
-	unclassified = class_distance(overpass_query("<ISO3166-2 code>", "unclassified"))
-	residential = class_distance(overpass_query("<ISO3166-2 code>", "residential"))
-	service = class_distance(overpass_query("<ISO3166-2 code>", "service"))
+	sys_iso_area = sys.argv
+	
+	motorway = class_distance(overpass_query(sys_iso_area[1], "motorway"))
+	trunk = class_distance(overpass_query(sys_iso_area[1], "trunk"))
+	primary = class_distance(overpass_query(sys_iso_area[1], "primary"))
+	secondary = class_distance(overpass_query(sys_iso_area[1], "secondary"))
+	tertiary = class_distance(overpass_query(sys_iso_area[1], "tertiary"))
+	unclassified = class_distance(overpass_query(sys_iso_area[1], "unclassified"))
+	residential = class_distance(overpass_query(sys_iso_area[1], "residential"))
+	service = class_distance(overpass_query(sys_iso_area[1], "service"))
 
 	d_proportions["motorway"] = motorway[0]
 	d_proportions["trunk"] = trunk[0]
