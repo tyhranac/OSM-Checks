@@ -5,12 +5,12 @@ import sys
 import time
 
 
-def overpass_query(iso_sub_code, classification, admin_level="4"):
+def overpass_query(iso_sub_code, classification):
 	"""returns json response of ways where highway=classification in iso_code area"""
 	url = "http://overpass-api.de/api/interpreter"
 	query = f"""
 	[out:json][timeout:5000];
-	area["ISO3166-2"="{iso_sub_code}"][admin_level={admin_level}];
+	area["ISO3166-2"="{iso_sub_code}"];
 	way[highway={classification.lower()}](area);
 	(._;>;);
 	out body;
