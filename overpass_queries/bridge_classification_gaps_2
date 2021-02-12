@@ -27,7 +27,7 @@
 
     way.t_connected.bridges->.gaps;
   );
-  //primarys
+  //primaries
  (
    (
      (
