@@ -1,6 +1,6 @@
 [out:xml][timeout:2500];
 
-({{geocodeArea:"Mimaropa"}};)->.searchArea;
+({{geocodeArea:"<location name>"}};)->.searchArea;
 
 //ways connected to classification of interest that aren't said classification
 (
