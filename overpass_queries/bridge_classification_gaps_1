@@ -15,7 +15,7 @@
 
 //bridges
 (
-  way[bridge=yes](area.searchArea);
+  way[bridge=yes][!man_made](area.searchArea);
 )->.bridges;
 
 //bridges connected to classification of interest that aren't said classification
