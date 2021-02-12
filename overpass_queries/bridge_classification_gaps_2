@@ -1,0 +1,67 @@
+[out:xml][timeout:2500][bbox:{{bbox}}];
+
+(
+  way[bridge=yes][!man_made];
+)->.bridges;
+
+(
+  //motorways
+  (
+    (
+      (
+        way[highway=motorway];
+        node(w);way(bn);
+      ); - way[highway=motorway];
+    )->.m_connected;
+    
+    way.m_connected.bridges->.gaps;
+  );
+  //trunks
+  (
+    (
+      (
+        way[highway=trunk];
+        node(w);way(bn);
+      ); - way[highway=trunk];
+    )->.t_connected;
+
+    way.t_connected.bridges->.gaps;
+  );
+  //primarys
+ (
+   (
+     (
+       way[highway=primary];
+       node(w);way(bn);
+     ); - way[highway=primary];
+   )->.p_connected;
+   
+   way.p_connected.bridges->.gaps;
+ );
+  //secondaries
+ (
+   (
+     (
+       way[highway=secondary];
+       node(w);way(bn);
+     ); - way[highway=secondary];
+   )->.s_connected;
+   
+   way.s_connected.bridges->.gaps;
+ );
+  //tertiaries
+ (
+   (
+     (
+       way[highway=tertiary];
+       node(w);way(bn);
+     ); - way[highway=tertiary];
+   )->.t_connected;
+   
+   way.t_connected.bridges->.gaps;
+ );
+);
+
+(.gaps;>;);
+
+out meta qt;
